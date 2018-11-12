@@ -41,7 +41,8 @@ const clientSideValidateField = elt => {
 	implementation. */
 const clientSideValidateForm = form => {
 	const elts = form.querySelectorAll(
-		'input:not(.disabled-elt), select:not(.disabled-elt)');
+		'input:not(.disabled-elt):not(.novalidate),' +
+		'select:not(.disabled-elt):not(.novalidate)');
 	let valid = true;
 	for (let i = 0; i < elts.length; ++i) {
 		const validity = clientSideValidateField(elts[i])

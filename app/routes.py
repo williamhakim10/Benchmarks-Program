@@ -6,7 +6,7 @@ from titlecase import titlecase
 from flask import render_template, jsonify, session, request, abort
 from wtforms.fields.core import BooleanField
 from app import app, db
-from app.forms import UserForm, OrgForm, ApiKeyForm
+from app.forms import UserForm, OrgForm, ApiKeyForm, MergeTagsForm
 from app.models import AppUser, Organization
 from app.dbops import store_user, store_org
 from app.tasks import init_list_analysis, send_activated_email
@@ -269,6 +269,12 @@ def analyze_list():
     org_id = session['org_id']
     init_list_analysis.delay(user_data, list_data, org_id)
     return jsonify(True)
+
+@app.route('/add-merge-tags')
+def add_merge_tags():
+    merge_tags_form = MergeTagsForm()
+    return render_template('add-merge-tags.html',
+                           merge_tags_form=merge_tags_form)
 
 @app.route('/admin')
 def admin():

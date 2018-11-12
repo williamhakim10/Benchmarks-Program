@@ -1,0 +1,40 @@
+.merge-tags-form-item {
+
+	@include media-breakpoint-down(md) {
+		padding-bottom: $form-elt-bottom-margin / 2;
+	}
+
+	@include media-breakpoint-up(md) {
+		display: flex;
+		justify-content: space-between;
+	}
+	
+	.form-input-wrapper {
+		@include media-breakpoint-down(md) {
+			margin-bottom: $form-elt-bottom-margin / 2;
+		}
+
+		@include media-breakpoint-up(md) {
+			display: inline-block;
+			width: 31.5%;
+		}
+	}
+}
+
+#add-merge-item {
+	margin-bottom: $form-elt-bottom-margin;
+	display: inline-block;
+	cursor: pointer;
+	color: $crimson;
+	fill: $crimson;
+
+	&:hover {
+		color: lighten($crimson, 25%);
+		fill: lighten($crimson, 25%);
+	}
+}
+
+#add-merge-item-svg {
+	padding-top: 1px;
+	margin-right: 5px;
+}

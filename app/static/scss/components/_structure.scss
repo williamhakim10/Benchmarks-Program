@@ -13,6 +13,10 @@ body {
 
 .content-block {
 	margin-bottom: $content-block-margin-bottom;
+
+	@include media-breakpoint-up(lg) {
+		margin-bottom: $content-block-margin-bottom-lg;
+	}
 }
 
 .bordered {

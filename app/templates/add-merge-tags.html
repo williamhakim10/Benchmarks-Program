@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container content-block">
+	<div class="row">
+		<div class="col-12 col-lg-7 d-flex flex-column content-block">
+			<h1 class="has-bottom-margin">Add Merge Tags</h1>
+			<form action="#" id="merge-tags-form" method="post" autocomplete="off" novalidate>
+				{% for merge_tag_form in merge_tags_form.merge_tags %}
+					<div class="merge-tags-form-item">
+						<div id="tag-input-wrapper-0" class="form-input-wrapper">
+							{{ merge_tag_form.tag(class="custom-select novalidate") }}
+							<span class="focus-bg"></span>
+						</div>
+						<div id="comparison-input-wrapper-0" class="form-input-wrapper">
+							{{ merge_tag_form.comparison(class="custom-select novalidate") }}
+							<span class="focus-bg"></span>
+						</div>
+						<div id="value-input-wrapper-0" class="form-input-wrapper">
+							{{ merge_tag_form.value(class="novalidate") }}
+							<span class="focus-bg"></span>
+						</div>
+					</div>
+				{% endfor %}
+				<div id="add-merge-item"><svg id="add-merge-item-svg" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewbox="0 0 52 52"><path d="M22.119 44.237C9.922 44.237 0 34.315 0 22.12 0 9.924 9.922.001 22.119.001S44.238 9.923 44.238 22.12s-9.924 22.117-22.119 22.117zm0-42.736C10.75 1.501 1.5 10.751 1.5 22.12s9.25 20.619 20.619 20.619 20.619-9.25 20.619-20.619-9.25-20.619-20.619-20.619z"/><path d="M31.434 22.869H12.805a.75.75 0 0 1 0-1.5h18.628a.75.75 0 0 1 .001 1.5z"/><path d="M22.119 32.183a.75.75 0 0 1-.75-.75V12.806a.75.75 0 0 1 1.5 0v18.626a.75.75 0 0 1-.75.751z"/></svg><span>Add another merge tag</span></div>
+				<div class="form-submit-wrapper">
+					{{ merge_tags_form.submit() }}
+				</div>
+			</form>
+		</div>
+		<div class="col-12 col-lg-4 offset-lg-1">
+			<div class="bordered has-bottom-margin">
+				<h2 class="has-bottom-margin">What are merge tags?</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

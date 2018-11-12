@@ -25,7 +25,8 @@ const js = {
 		 static + 'es/orgForm.js',
 		 static + 'es/admin.js',
 		 static + 'es/apiKeyForm.js',
-		 static + 'es/listsTable.js'],
+		 static + 'es/listsTable.js',
+		 static + 'es/mergeTagForm.js'],
 	out: static + 'js/'
 };
 
