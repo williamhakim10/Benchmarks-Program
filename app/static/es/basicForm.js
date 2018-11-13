@@ -11,15 +11,8 @@ const submitBasicInfo = async e => {
 	const formElts = basicInfoForm.querySelectorAll('input');
 	disable(formElts);
 	const
-		headers = new Headers({'X-CSRFToken': csrfToken}),
 		formData = new FormData(basicInfoForm),
-		payload = {
-			method: 'POST',
-			credentials: 'same-origin',
-			headers: headers,
-			body: formData
-		},
-		request = new Request('/validate-basic-info', payload);
+		request = fetchRequest('/validate-basic-info', formData);
 	try {
 		const response = await fetch(request);
 		if (response.ok) {

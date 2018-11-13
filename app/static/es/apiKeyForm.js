@@ -12,15 +12,8 @@ const submitApiKey = async e => {
 		'input:not([type="checkbox"]), .custom-control-label');
 	disable(formElts);
 	const
-		headers = new Headers({'X-CSRFToken': csrfToken}),
 		formData = new FormData(apiKeyForm),
-		payload = {
-			method: 'POST',
-			credentials: 'same-origin',
-			headers: headers,
-			body: formData
-		},
-		request = new Request('/validate-api-key', payload);
+		request = fetchRequest('/validate-api-key', formData);
 	try {
 		const response = await fetch(request);
 		if (response.ok)

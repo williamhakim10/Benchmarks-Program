@@ -90,3 +90,17 @@ const enable = elts => {
 
 /* Value of csrf token to protect against cross-site forgery attacks */
 const csrfToken = document.querySelector('meta[name=csrf-token]').content;
+
+/* Returns a POST request payload using the Fetch API */
+const fetchRequest = (requestURI, requestBody) => {
+	const
+		headers = new Headers({'X-CSRFToken': csrfToken}),
+		payload = {
+			method: 'POST',
+			credentials: 'same-origin',
+			headers: headers,
+			body: requestBody
+		},
+		request = new Request(requestURI, payload);
+	return request;
+}

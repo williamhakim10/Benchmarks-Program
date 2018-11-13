@@ -12,15 +12,8 @@ const submitOrg = async e => {
 		'label, .custom-control-label');
 	disable(formElts);
 	const
-		headers = new Headers({'X-CSRFToken': csrfToken}),
 		formData = new FormData(orgForm),
-		payload = {
-			method: 'POST',
-			credentials: 'same-origin',
-			headers: headers,
-			body: formData
-		},
-		request = new Request('/validate-org-info', payload);
+		request = fetchRequest('/validate-org-info', formData);
 	try {
 		const response = await fetch(request);
 		if (response.ok) {

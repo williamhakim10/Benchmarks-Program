@@ -81,7 +81,6 @@ const setupListsTable = data => {
 /* Submit a list for processing */
 const analyzeList = 
 	(listId, listName, totalCount, openRate, dateCreated, campaignCount) => {
-
 	return async e => {
 		e.preventDefault();
 		const analyzeLinks = document.querySelectorAll('.analyze-link');

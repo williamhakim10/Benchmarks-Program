@@ -276,6 +276,10 @@ def add_merge_tags():
     return render_template('add-merge-tags.html',
                            merge_tags_form=merge_tags_form)
 
+@app.route('/validate-merge-tags', methods=['POST'])
+def validate_merge_tags():
+    return jsonify(True)
+
 @app.route('/admin')
 def admin():
     """Admin dashboard route.
