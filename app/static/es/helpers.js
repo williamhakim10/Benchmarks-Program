@@ -55,7 +55,8 @@ const clientSideValidateForm = form => {
 /* Monitors form elements and automatically performs client-side validation
 	whenever a user stops typing */
 const inputs = document.querySelectorAll(
-	'.form-input-wrapper input, .form-input-wrapper select');
+	'.form-input-wrapper input:not(.novalidate), ' +
+	'.form-input-wrapper select:not(.novalidate)');
 for (let i = 0; i < inputs.length; ++i) {
 	const input = inputs[i];
 	if (input.tagName == 'INPUT') {
