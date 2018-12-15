@@ -10,7 +10,7 @@ const submitApiKey = async e => {
 	}
 	const formElts = apiKeyForm.querySelectorAll('select,' +
 		'input:not([type="checkbox"]), .custom-control-label');
-	disable(formElts);
+	toggleDisabled(formElts);
 	const
 		headers = new Headers({'X-CSRFToken': csrfToken}),
 		formData = new FormData(apiKeyForm),
@@ -33,7 +33,7 @@ const submitApiKey = async e => {
 				const errors = await response.json();
 				for (const [k, _] of Object.entries(errors)) 
 					tagField(apiKeyForm.querySelector('#' + k));
-				enable(formElts);
+				toggleDisabled(formElts);
 				apiKeyForm.addEventListener('submit', submitApiKey);
 			}
 			else

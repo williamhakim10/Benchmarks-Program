@@ -3,7 +3,7 @@ const toggles = document.querySelectorAll('span.switch');
 const changeActivationStatus = async e => {
 	const toggle = e.currentTarget;
 	toggle.removeEventListener('change', changeActivationStatus);
-	disable(toggle);
+	toggleDisabled(toggle);
 	const
 		id = toggle.getAttribute('switch-id'),
 		headers = new Headers({'X-CSRFToken': csrfToken}),
@@ -19,7 +19,7 @@ const changeActivationStatus = async e => {
 		if (!response.ok)
 			throw new Error(response.statusText);
 		else {
-			enable(toggle);
+			toggleDisabled(toggle);
 			toggle.addEventListener('change', changeActivationStatus);
 		}
 	}

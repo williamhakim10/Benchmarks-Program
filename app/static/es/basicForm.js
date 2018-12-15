@@ -9,7 +9,7 @@ const submitBasicInfo = async e => {
 		return;
 	}
 	const formElts = basicInfoForm.querySelectorAll('input');
-	disable(formElts);
+	toggleDisabled(formElts);
 	const
 		headers = new Headers({'X-CSRFToken': csrfToken}),
 		formData = new FormData(basicInfoForm),
@@ -46,7 +46,7 @@ const submitBasicInfo = async e => {
 				const errors = await response.json();
 				for (const [k, _] of Object.entries(errors))
 					tagField(basicInfoForm.querySelector('#' + k));
-				enable(formElts);
+				toggleDisabled(formElts);
 				basicInfoForm.addEventListener('submit', submitBasicInfo);
 			}
 			else

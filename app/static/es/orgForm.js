@@ -10,7 +10,7 @@ const submitOrg = async e => {
 	}
 	const formElts = orgForm.querySelectorAll(
 		'label, .custom-control-label');
-	disable(formElts);
+	toggleDisabled(formElts);
 	const
 		headers = new Headers({'X-CSRFToken': csrfToken}),
 		formData = new FormData(orgForm),
@@ -45,7 +45,7 @@ const submitOrg = async e => {
 					tagField(orgForm.querySelector(
 						'#' + k.replace('_', '-') + '-wrapper'));
 				}
-				enable(formElts);
+				toggleDisabled(formElts);
 				orgForm.addEventListener('submit', submitOrg);
 			}
 			else

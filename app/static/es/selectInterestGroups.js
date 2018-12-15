@@ -6,5 +6,5 @@ if (interestsForm) {
 		analyzeWholeList = interestsForm.querySelector('#analyze_whole_list'),
 		interestGroupsSection = interestsForm.querySelector('#interest-groups');
 	analyzeWholeList.addEventListener(
-		'change', () => interestGroupsSection.classList.toggle('disabled-elt'))
+		'change', () => toggleDisabled(interestGroupsSection))
 }

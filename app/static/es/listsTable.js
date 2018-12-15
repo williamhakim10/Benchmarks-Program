@@ -87,7 +87,7 @@ const analyzeList =
 		const analyzeLinks = document.querySelectorAll('.analyze-link');
 		for (let i = 0; i < analyzeLinks.length; ++i)
 			analyzeLinks[i].removeEventListener('click', listeners[i]);
-		disable(document.querySelectorAll('.lists-table'));
+		toggleDisabled(document.querySelectorAll('.lists-table'));
 		const 
 			headers = new Headers({
 				"X-CSRFToken": csrfToken,
@@ -120,7 +120,7 @@ const analyzeList =
 					'&body=' + body;
 			}
 			else {
-				enable(document.querySelectorAll('.lists-table'));
+				toggleDisabled(document.querySelectorAll('.lists-table'));
 				for (let i = 0; i < analyzeLinks.length; ++i)
 					analyzeLinks[i].addEventListener('click', listeners[i]);
 				throw new Error(e.statusText);

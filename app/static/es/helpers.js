@@ -67,24 +67,14 @@ for (let i = 0; i < inputs.length; ++i) {
 	}
 }
 
-/* Disables an elt or a nodelist of elts */
-const disable = elts => {
+/* Disables or enables an elt or a nodelist of elts */
+const toggleDisabled = elts => {
 	if (NodeList.prototype.isPrototypeOf(elts)) {
 		for (let i = 0; i < elts.length; ++i)
-			elts[i].classList.add('disabled-elt');
+			elts[i].classList.toggle('disabled-elt');
 	}
 	else
-		elts.classList.add('disabled-elt');
-}
-
-/* Enables an elt or a nodelist of elts */
-const enable = elts => {
-	if (NodeList.prototype.isPrototypeOf(elts)) {
-		for (let i = 0; i < elts.length; ++i)
-			elts[i].classList.remove('disabled-elt');
-	}
-	else
-		elts.classList.remove('disabled-elt');
+		elts.classList.toggle('disabled-elt');
 }
 
 /* Value of csrf token to protect against cross-site forgery attacks */
