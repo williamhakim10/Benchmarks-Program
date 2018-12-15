@@ -6,7 +6,7 @@ from titlecase import titlecase
 from flask import render_template, jsonify, session, request, abort
 from wtforms.fields.core import BooleanField
 from app import app, db
-from app.forms import UserForm, OrgForm, ApiKeyForm
+from app.forms import (UserForm, OrgForm, ApiKeyForm, InterestGroupsForm)
 from app.models import AppUser, Organization
 from app.dbops import store_user, store_org
 from app.tasks import init_list_analysis, send_activated_email
@@ -269,6 +269,24 @@ def analyze_list():
     org_id = session['org_id']
     init_list_analysis.delay(user_data, list_data, org_id)
     return jsonify(True)
+
+@app.route('/select-interest-groups')
+def select_interest_groups():  
+    interests_form = InterestGroupsForm()
+    interests_form.groups.append_entry()
+    interests_form.groups[0].name = 'Newsletters'
+    interests_form.groups[0].interests.choices = [
+        ('Foo', 'Foo (1567 members)'), ('Bar', 'Bar (206 Members)')]
+    interests_form.groups.append_entry()
+    interests_form.groups[1].name = 'Internal Groups'
+    interests_form.groups[1].interests.choices = [
+        ('Foo', 'Foo (11 Members)'), ('Baz', 'Baz (21 Members)')]
+    return render_template('select-interest-groups.html',
+                           interests_form=interests_form)
+
+"""@app.route('/validate-merge-tags', methods=['POST'])
+def validate_merge_tags():
+    return jsonify(True)"""
 
 @app.route('/admin')
 def admin():

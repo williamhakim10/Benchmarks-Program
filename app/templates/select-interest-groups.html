@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container content-block">
+	<div class="row">
+		<div class="col-12 col-lg-7 d-flex flex-column content-block">
+			<h1 class="has-bottom-margin">Add Interest Groups</h1>
+			<form action="#" id="interest-groups-form" method="post" autocomplete="off" novalidate>
+				<div class="custom-control custom-checkbox">
+					{{ interests_form.analyze_whole_list(type="checkbox", class="custom-control-input", checked="true") }}
+					<label class="custom-control-label" for="analyze_whole_list">Analyze my entire list</label>
+				</div>
+				<div id="interest-groups" class="disabled-elt">
+					{% for interest_group in interests_form.groups %}
+						<label class="d-block" for="{{ interest_group.name }}">{{ interest_group.name }}</label>
+						<div class="multi-custom-control-wrapper">
+							{% for interest in interest_group.interests %}
+								<div class="custom-control custom-checkbox multi-custom-control">
+									{{ interest(type="checkbox", class="custom-control-input") }}
+									{{ interest.label(class="custom-control-label") }}
+								</div>
+							{% endfor %}
+						</div>
+					{% endfor %}
+				</div>
+				<div class="form-submit-wrapper">
+					{{ interests_form.submit() }}
+				</div>
+			</form>
+		</div>
+		<div class="col-12 col-lg-4 offset-lg-1">
+			<div class="bordered has-bottom-margin">
+				<h2 class="has-bottom-margin">What are interest groups?</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

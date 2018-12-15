@@ -6,27 +6,21 @@ The templates are rendered using Jinja2.
 import requests
 from flask import session
 from flask_wtf import FlaskForm
-from wtforms import (StringField, SubmitField,
-                     BooleanField, RadioField, SelectField)
+from wtforms import (StringField, SubmitField, BooleanField,
+                     RadioField, SelectField, FormField, SelectMultipleField,
+                     widgets, Label, FieldList, FormField, HiddenField)
 from wtforms.validators import DataRequired, Email
 
 class UserForm(FlaskForm):
-    """A form allowing the user to submit their basic information.
-
-    Args:
-        Flaskform: the base Flask-WTF form class.
-    """
+    """A form allowing the user to submit their basic information."""
     name = StringField('Name', validators=[DataRequired()])
     email = StringField('Email Address', validators=[DataRequired(), Email()])
     news_org = StringField('News Organization', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 class OrgForm(FlaskForm):
-    """A form allowing the user to submit information about their organization.
-
-    Args:
-        Flaskform: the base Flask-WTF form class.
-    """
+    """A form allowing the user to submit information
+    about their organization."""
     financial_classification = RadioField(
         'Financial Classification', validators=[DataRequired()],
         choices=[('For-Profit', 'For-Profit'),
@@ -71,11 +65,7 @@ class OrgForm(FlaskForm):
 
 class ApiKeyForm(FlaskForm):
     """A form allowing the user to submit their MailChimp API key
-    and data storage options.
-
-    Args:
-        Flaskform: the base Flask-WTF form class.
-    """
+    and data storage options."""
     key = StringField('API Key', validators=[DataRequired()])
     organization = SelectField('Organization', choices=[])
     store_aggregates = BooleanField('Use my aggregate MailChimp data'
@@ -133,3 +123,16 @@ class ApiKeyForm(FlaskForm):
         session['monthly_updates'] = self.monthly_updates.data
 
         return True
+
+class MultiCheckboxField(SelectMultipleField):
+    widget = widgets.TableWidget()
+    option_widget = widgets.CheckboxInput()
+
+class InterestGroupForm(FlaskForm):
+    name = HiddenField()
+    interests = MultiCheckboxField()
+
+class InterestGroupsForm(FlaskForm):
+    analyze_whole_list = BooleanField('Analyze my entire list')
+    groups = FieldList(FormField(InterestGroupForm))
+    submit = SubmitField('Submit')

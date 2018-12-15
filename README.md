@@ -48,7 +48,7 @@ These instructions will get you a copy of the project up and running on your loc
 ##### Install Node dependencies and compile the front-end source
 
     npm install
-    gulp
+    npm run gulp
 
 ##### Run the application
 
@@ -66,7 +66,7 @@ Lint the backend with `pylint`:
 
     pylint app
 
-`Gulp` should automatically lint the front-end. Javascript rules are defined in `.eslintrc`.
+Gulp should automatically lint the front-end. `.eslintrc` and `pylintrc` define Javascript and Python rules respectively.
 
 ## Deployment
 
